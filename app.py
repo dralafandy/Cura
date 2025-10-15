@@ -14,14 +14,28 @@ Base.metadata.create_all(engine)
 names = ['إداري', 'طبيب1']
 usernames = ['admin', 'doctor1']
 passwords = ['adminpass', 'doctorpass']
-hashed_passwords = stauth.Hasher(passwords).generate()
 
+# Create the credentials dict with plain passwords
 credentials = {
-    'credentials': {
-        'usernames': {usernames[i]: {'name': names[i], 'password': hashed_passwords[i]} for i in range(len(usernames))}
+    'usernames': {
+        usernames[i]: {
+            'name': names[i],
+            'password': passwords[i]
+        } for i in range(len(usernames))
     }
 }
-authenticator = stauth.Authenticate(credentials, 'dental_app', 'auth_key', cookie_expiry_days=30)
+
+# Pre-hash the passwords
+stauth.Hasher.hash_passwords(credentials)
+
+# Then, the authenticator
+authenticator = stauth.Authenticate(
+    credentials,
+    'dental_app',  # cookie name
+    'auth_key',    # cookie key
+    30,            # cookie_expiry_days
+    auto_hash=False  # since we pre-hashed
+)
 
 # CSS لدعم RTL (العربية)
 st.markdown("""
