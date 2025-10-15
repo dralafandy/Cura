@@ -1,2 +1,6 @@
 streamlit
+sqlalchemy
 pandas
+streamlit-authenticator
+reportlab
+openpyxl
