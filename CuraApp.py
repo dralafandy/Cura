@@ -3,7 +3,6 @@
 # Run with: streamlit run dental_clinic_app.py
 # Enhanced for mobile: Uses streamlit_javascript to get screen width and adjust layouts (e.g., fewer columns on mobile).
 # Added features: Edit/Delete for patients/doctors/treatments/appointments, search/filter in dataframes, plotly charts in reports, emojis, better styling with CSS, expanders for sections, pagination for large data.
-# Improved sidebar: Added CSS to make the collapsed sidebar button (hamburger menu) larger and more visible on mobile.
 # Install additional: pip install streamlit-javascript plotly
 
 import streamlit as st
@@ -320,7 +319,7 @@ def export_to_excel(df):
 # Streamlit App
 st.set_page_config(layout="wide", page_title="إدارة عيادة الأسنان 🦷", page_icon="🦷")
 
-# Enhanced CSS for mobile responsiveness and better UI, including larger sidebar collapse button
+# Enhanced CSS for mobile responsiveness and better UI
 st.markdown("""
     <style>
     html, body, [class*="css"]  {
@@ -335,18 +334,6 @@ st.markdown("""
     .stDataFrame {
         width: 100%;
     }
-    /* Make sidebar collapse button larger and more visible on mobile */
-    section[data-testid="collapsedControl"] {
-        width: 50px !important;
-        height: 50px !important;
-        background-color: #007bff !important; /* Blue background for visibility */
-        border-radius: 50% !important; /* Round shape */
-        padding: 10px !important;
-    }
-    section[data-testid="collapsedControl"] > div {
-        font-size: 30px !important; /* Larger icon */
-        color: white !important;
-    }
     /* Media queries for mobile */
     @media (max-width: 768px) {
         .st-expander {
@@ -354,10 +341,6 @@ st.markdown("""
         }
         .st-columns > div {
             flex-direction: column;
-        }
-        /* Ensure sidebar is accessible */
-        [data-testid="stSidebar"] {
-            min-width: 80% !important; /* Wider sidebar when open on mobile */
         }
     }
     </style>
