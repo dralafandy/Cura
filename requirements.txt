@@ -4,3 +4,4 @@ pandas
 streamlit-authenticator
 reportlab
 openpyxl
+streamlit-javascript plotly
